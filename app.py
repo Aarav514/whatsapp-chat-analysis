@@ -4,12 +4,24 @@ import helper
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
+st.title("Welcome to WhatsApp Chat Analyzer 👋")
+st.markdown("Upload a WhatsApp chat `.txt` file using the left sidebar to begin analysis.")
+
+
+
 st.sidebar.title('Whatsapp Chat Analyzer')
 uploaded_file = st.sidebar.file_uploader('Choose a file')
+
+if uploaded_file is None:
+    st.warning("📄 Please upload a chat file from the left sidebar to get started.")
+
 if uploaded_file is not None:
-    bytes =  uploaded_file.getvalue()
+    bytes = uploaded_file.getvalue()
     data = bytes.decode('utf-8')
     df = preprocess.preprocess(data)
+
+
 
 
     # fetch unique users
